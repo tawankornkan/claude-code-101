@@ -1,0 +1,9 @@
+อ่าน @beta-survey-results.csv แล้วสร้างไฟล์ report.html
+
+report ควรมี:
+1. สรุป headline metrics — satisfaction score เฉลี่ย, NPS, % ที่ยินดีจ่าย premium
+2. Feature ที่ผู้ใช้ขอบ่อยที่สุด
+3. Willingness to pay แยกตาม segment (อายุ, เมือง)
+4. ข้อเสนอแนะสำหรับทีม product 3 ข้อ
+
+ทำให้ดูดี อ่านง่าย ใช้ CSS ด้วย ไม่ต้องพึ่ง external library

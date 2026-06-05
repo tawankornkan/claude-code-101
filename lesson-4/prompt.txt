@@ -1,9 +1,10 @@
-อ่าน @prd-redflagfinder.md แล้ว review ในฐานะ Senior PM
+## Prompt 1 — Review PRD ด้วย Sub-agents
 
-สิ่งที่อยากให้ตรวจ:
-1. มี section สำคัญอะไรที่ขาดหายไปไหม
-2. Success metrics ที่ตั้งไว้สมเหตุสมผลไหมสำหรับ MVP
-3. MVP scope กว้างหรือแคบเกินไปไหม
-4. Open questions ที่ควรตอบก่อน build มีอะไรบ้าง
+ใช้ agent ทั้ง 3 ตัว review @prd-redflagfinder.md พร้อมกัน ได้แก่
+engineer, executive และ user-researcher
 
-ตอบตรงๆ ไม่ต้องเกรงใจ ถ้ามีอะไรไม่ชัดหรือน่ากังวลให้บอกเลย
+---
+
+## Prompt 2 — ใช้ /review-prd Command
+
+/review-prd @prd-redflagfinder.md
