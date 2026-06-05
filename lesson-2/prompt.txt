@@ -1,0 +1,12 @@
+## Prompt 1 — สรุป User Research
+
+อ่าน @user-interviews แล้วสร้างไฟล์สรุป:
+1. Pain points ที่พูดถึงบ่อยที่สุด 3 อันดับแรก
+2. Feature ที่ผู้ใช้อยากได้มากที่สุด
+3. ช่วง Willingness to Pay และ segment ที่ต่างกัน
+
+---
+
+## Prompt 2 — เขียนตาม Communication Style
+
+อ่าน @style-slack.md แล้วเขียน Slack message
