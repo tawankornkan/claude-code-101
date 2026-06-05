@@ -1,2 +1,3 @@
-ดูรูปภาพ prototype นี้ของแอป RedFlagFinder แล้ว review ในฐานะ UX reviewer
-ตอบเป็นข้อๆ สั้นๆ actionable ไม่ต้องพูดถึงสิ่งที่ดีแล้ว
+/query-db May 2026 มี user register เข้ามากี่คน
+
+/query-db เปลี่ยน status ของ user ชื่อ Test Coach เป็น inactive

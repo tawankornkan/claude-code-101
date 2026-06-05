@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SquadFit Design System</title>
+<style>
+@font-face {
+  font-family: 'Manrope';
+  src: url('fonts/Manrope-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/Manrope-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tokens ─────────────────────────────────────────────────────────────── */
+:root {
+  --bg-0: #000000;
+  --bg-1: #121212;
+  --bg-2: #181818;
+  --bg-3: #282828;
+  --bg-4: #3E3E3E;
+
+  --fg-1: #FFFFFF;
+  --fg-2: #B3B3B3;
+  --fg-3: #6A6A6A;
+  --fg-on-green: #000000;
+
+  --green-1: #1ED760;
+  --green-1-hover: #1FDF64;
+  --green-1-pressed: #169C46;
+  --green-tint-08: rgba(30,215,96,0.08);
+  --green-tint-16: rgba(30,215,96,0.16);
+
+  --gold:   #FFD24A;
+  --silver: #C8C9CB;
+  --bronze: #CD7F32;
+
+  --error:   #F15E6C;
+  --warning: #FFC72C;
+  --success: #1ED760;
+  --info:    #4DA3FF;
+
+  --scrim-modal: rgba(0,0,0,0.6);
+  --hairline: #282828;
+
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  --fs-eyebrow: 11px;
+  --fs-caption: 13px;
+  --fs-body:    15px;
+  --fs-lead:    17px;
+  --fs-h3:      22px;
+  --fs-h2:      28px;
+  --fs-h1:      40px;
+  --fs-display: 56px;
+
+  --lh-tight: 1.15;
+  --lh-body:  1.35;
+  --lh-loose: 1.5;
+
+  --tracking-display: -0.02em;
+  --tracking-tight:   -0.01em;
+  --tracking-eyebrow: 0.08em;
+
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  --radius-1:   4px;
+  --radius-2:   8px;
+  --radius-3:   12px;
+  --radius-pill: 999px;
+
+  --shadow-modal: 0 16px 48px rgba(0,0,0,0.6);
+  --focus-ring:   0 0 0 2px var(--bg-1), 0 0 0 4px var(--green-1);
+
+  --ease-enter: cubic-bezier(0.3, 0, 0, 1);
+  --ease-exit:  cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast:   120ms;
+  --dur-base:   240ms;
+}
+
+/* ── Reset & base ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.sidebar {
+  width: 220px;
+  flex: 0 0 220px;
+  background: var(--bg-0);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 32px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-header {
+  padding: 0 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-logo {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--green-1);
+  letter-spacing: -0.02em;
+}
+
+.sidebar-sub {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.nav-group {
+  padding: 0 12px 4px;
+}
+
+.nav-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  padding: 12px 8px 6px;
+}
+
+.nav-link {
+  display: block;
+  padding: 7px 8px;
+  border-radius: 6px;
+  color: var(--fg-2);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-enter),
+              color var(--dur-fast) var(--ease-enter);
+}
+.nav-link:hover { background: var(--bg-3); color: var(--fg-1); }
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 48px 56px 96px;
+  max-width: 900px;
+}
+
+/* ── Section structure ───────────────────────────────────────────────────── */
+.section {
+  margin-bottom: 72px;
+  scroll-margin-top: 32px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  margin-bottom: 8px;
+}
+
+.section-desc {
+  font-size: var(--fs-caption);
+  color: var(--fg-2);
+  line-height: var(--lh-loose);
+  margin-bottom: 32px;
+  max-width: 560px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--hairline);
+  margin-bottom: 32px;
+}
+
+.sub-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin-bottom: 12px;
+  margin-top: 28px;
+}
+.sub-label:first-child { margin-top: 0; }
+
+/* ── Colors ──────────────────────────────────────────────────────────────── */
+.color-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.swatch {
+  flex: 1;
+  min-width: 100px;
+  border-radius: var(--radius-2);
+  padding: 14px 14px 12px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.swatch .sw-role { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; opacity: 0.6; }
+.swatch .sw-name { font-weight: 700; font-size: 13px; }
+.swatch .sw-hex  { font-family: var(--font-mono); font-size: 11px; opacity: 0.85; }
+
+.swatch-sm {
+  border-radius: var(--radius-2);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-2);
+}
+.swatch-dot { width: 36px; height: 36px; border-radius: 999px; flex: 0 0 36px; }
+.swatch-sm .sw-role { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--fg-2); }
+.swatch-sm .sw-name { font-weight: 700; font-size: 14px; }
+.swatch-sm .sw-hex  { font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+/* brand green scale */
+.green-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* podium */
+.podium-swatch {
+  border-radius: var(--radius-2);
+  padding: 16px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.podium-row { display: flex; gap: 8px; align-items: center; }
+.podium-medal {
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #000;
+  font-size: 13px;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+.type-row {
+  display: grid;
+  grid-template-columns: 72px 120px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.type-row:last-child { border-bottom: 0; }
+.type-role { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--fg-2); }
+.type-meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); }
+
+/* type classes */
+.sf-display { font-family: var(--font-display); font-size: var(--fs-display); font-weight: 800; line-height: var(--lh-tight); letter-spacing: var(--tracking-display); color: var(--fg-1); }
+.sf-h1 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 800; line-height: var(--lh-tight); letter-spacing: var(--tracking-display); color: var(--fg-1); }
+.sf-h2 { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 700; line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); color: var(--fg-1); }
+.sf-h3 { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 700; line-height: 1.25; letter-spacing: var(--tracking-tight); color: var(--fg-1); }
+.sf-lead { font-size: var(--fs-lead); font-weight: 500; line-height: var(--lh-body); color: var(--fg-1); }
+.sf-body { font-size: var(--fs-body); font-weight: 400; line-height: var(--lh-body); color: var(--fg-1); }
+.sf-body-secondary { font-size: var(--fs-body); font-weight: 400; color: var(--fg-2); }
+.sf-caption { font-size: var(--fs-caption); font-weight: 500; line-height: var(--lh-body); color: var(--fg-2); }
+.sf-eyebrow { font-size: var(--fs-eyebrow); font-weight: 700; line-height: 1.2; letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--fg-2); }
+.sf-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+.sf-mono { font-family: var(--font-mono); font-size: 0.94em; letter-spacing: 0.02em; }
+
+/* ── Spacing ─────────────────────────────────────────────────────────────── */
+.spacing-scale { display: flex; gap: 10px; align-items: flex-end; height: 100px; }
+.spacing-step { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.spacing-bar { background: var(--green-1); width: 28px; border-radius: 4px; }
+.spacing-v { font-family: var(--font-mono); font-size: 12px; color: var(--fg-1); }
+.spacing-lbl { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--fg-2); }
+
+/* radii */
+.radii-row { display: flex; gap: 14px; align-items: flex-end; }
+.radii-demo { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radii-box { width: 100%; background: var(--green-1); }
+.radii-v { font-family: var(--font-mono); font-size: 12px; color: var(--fg-1); }
+.radii-lbl { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--fg-2); text-align: center; }
+
+/* elevation */
+.elevation-row { display: flex; gap: 14px; }
+.elevation-card {
+  flex: 1;
+  height: 110px;
+  border-radius: var(--radius-2);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+}
+.elevation-stack { display: flex; flex-direction: column; gap: 3px; }
+.elevation-lbl { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--fg-2); }
+.elevation-val { font-family: var(--font-mono); font-size: 11px; color: var(--fg-1); opacity: 0.85; }
+
+/* ── Components ──────────────────────────────────────────────────────────── */
+
+/* Buttons */
+.btn-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+
+.sf-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  cursor: pointer;
+  border: 0;
+  transition: transform var(--dur-fast) var(--ease-enter),
+              background var(--dur-fast) var(--ease-enter);
+}
+.sf-pill--primary { background: var(--green-1); color: var(--fg-on-green); }
+.sf-pill--primary:hover { background: var(--green-1-hover); }
+.sf-pill--primary:active { background: var(--green-1-pressed); transform: scale(0.97); }
+.sf-pill--ghost { background: transparent; color: var(--fg-1); border: 1px solid var(--bg-4); }
+.sf-pill--ghost:hover { background: var(--bg-3); border-color: var(--bg-3); }
+.sf-pill--surface { background: var(--bg-3); color: var(--fg-1); }
+.sf-pill--surface:hover { background: var(--bg-4); }
+
+.btn-fab {
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  background: var(--green-1);
+  border: 0;
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background var(--dur-fast) var(--ease-enter);
+}
+.btn-fab:hover { background: var(--green-1-hover); }
+
+/* Inputs */
+.sf-field {
+  background: var(--bg-3);
+  border: 0;
+  border-radius: var(--radius-1);
+  padding: 12px 14px;
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  width: 220px;
+  outline: none;
+}
+.sf-field:focus { box-shadow: var(--focus-ring); }
+.sf-field::placeholder { color: var(--fg-3); }
+
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  background: var(--bg-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.stepper button {
+  background: transparent;
+  color: var(--fg-1);
+  border: 0;
+  width: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.stepper .sv {
+  padding: 0 16px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  min-width: 64px;
+  line-height: 44px;
+}
+
+.toggle {
+  width: 44px; height: 24px;
+  background: var(--green-1);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  flex: 0 0 44px;
+}
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px; left: 22px;
+  width: 20px; height: 20px;
+  background: #000;
+  border-radius: 999px;
+  transition: left var(--dur-fast) var(--ease-enter);
+}
+.toggle.off { background: var(--bg-4); }
+.toggle.off::after { left: 2px; background: var(--fg-2); }
+
+/* Chips & Badges */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--bg-3);
+  color: var(--fg-1);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip--active { background: var(--green-1); color: #000; }
+.chip--ghost { background: transparent; border: 1px solid var(--bg-4); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-1);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge--verified { background: var(--green-tint-16); color: var(--green-1); }
+.badge--live { background: var(--error); color: #fff; }
+.badge--pr { background: var(--gold); color: #000; }
+.badge--neutral { background: var(--bg-3); color: var(--fg-1); }
+
+/* Avatars */
+.avatar-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.avatar-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.avatar {
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+}
+.avatar-name { font-size: 12px; font-weight: 600; }
+.avatar-lbl { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--fg-2); }
+
+/* Leaderboard */
+.lb-list { background: var(--bg-2); border-radius: var(--radius-2); overflow: hidden; }
+.lb-row {
+  display: grid;
+  grid-template-columns: 40px 48px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 8px 16px;
+  height: 60px;
+  transition: background var(--dur-fast) var(--ease-enter);
+}
+.lb-row:hover { background: #1F1F1F; }
+.lb-row + .lb-row { border-top: 1px solid var(--hairline); }
+.lb-rank { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 18px; color: var(--fg-2); text-align: center; }
+.lb-medal { width: 24px; height: 24px; border-radius: 999px; display: grid; place-items: center; font-weight: 800; font-size: 12px; color: #000; margin: 0 auto; }
+.lb-av { width: 44px; height: 44px; border-radius: 999px; background: var(--bg-3); display: grid; place-items: center; font-weight: 700; color: #fff; font-size: 16px; }
+.lb-name { display: flex; flex-direction: column; gap: 2px; }
+.lb-name b { font-weight: 700; font-size: 15px; }
+.lb-name span { font-size: 12px; color: var(--fg-2); }
+.lb-metric { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 18px; }
+.lb-metric.green { color: var(--green-1); }
+
+/* Cards */
+.card-demo { background: var(--bg-2); border-radius: var(--radius-2); padding: var(--sp-4); }
+.card-demo:hover { background: #1F1F1F; }
+
+/* Motion */
+.motion-demo {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.motion-box {
+  width: 80px; height: 80px;
+  background: var(--bg-3);
+  border-radius: var(--radius-2);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition-property: background, border-color, transform;
+}
+.motion-box:hover { background: var(--bg-4); border-color: var(--bg-4); transform: scale(1.03); }
+
+/* Token table */
+.token-table { width: 100%; border-collapse: collapse; }
+.token-table th, .token-table td {
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--hairline);
+}
+.token-table th { color: var(--fg-2); font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.token-table td:first-child { font-family: var(--font-mono); color: var(--green-1); font-size: 12px; }
+.token-table td:nth-child(2) { font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); }
+
+/* Do / Don't */
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.do-card, .dont-card {
+  background: var(--bg-2);
+  border-radius: var(--radius-2);
+  padding: 20px;
+}
+.do-card { border-top: 2px solid var(--green-1); }
+.dont-card { border-top: 2px solid var(--error); }
+.do-card h4 { color: var(--green-1); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.dont-card h4 { color: var(--error); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.do-card li, .dont-card li { font-size: 13px; color: var(--fg-2); line-height: 1.6; margin-left: 16px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ── Sidebar nav ──────────────────────────────────────────────────────── -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">SquadFit</div>
+    <div class="sidebar-sub">Design System</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Foundation</div>
+    <a class="nav-link" href="#colors-surfaces">Surfaces</a>
+    <a class="nav-link" href="#colors-brand">Brand Green</a>
+    <a class="nav-link" href="#colors-semantic">Semantic</a>
+    <a class="nav-link" href="#colors-podium">Podium</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Typography</div>
+    <a class="nav-link" href="#type-scale">Type Scale</a>
+    <a class="nav-link" href="#type-body">Body & Meta</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Spacing</div>
+    <a class="nav-link" href="#spacing-scale">Scale</a>
+    <a class="nav-link" href="#spacing-radii">Radii</a>
+    <a class="nav-link" href="#spacing-elevation">Elevation</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Components</div>
+    <a class="nav-link" href="#comp-buttons">Buttons</a>
+    <a class="nav-link" href="#comp-inputs">Inputs</a>
+    <a class="nav-link" href="#comp-chips">Chips & Badges</a>
+    <a class="nav-link" href="#comp-avatars">Avatars</a>
+    <a class="nav-link" href="#comp-leaderboard">Leaderboard Row</a>
+    <a class="nav-link" href="#comp-cards">Cards</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Motion</div>
+    <a class="nav-link" href="#motion">Tokens & Easing</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Reference</div>
+    <a class="nav-link" href="#do-dont">Do & Don't</a>
+    <a class="nav-link" href="#tokens">All Tokens</a>
+  </div>
+</nav>
+
+<!-- ── Main content ────────────────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- Header -->
+  <div style="margin-bottom: 56px;">
+    <div class="sf-eyebrow" style="margin-bottom: 8px;">Spotify-inspired dark UI</div>
+    <div class="sf-display" style="margin-bottom: 12px;">Design System</div>
+    <div class="sf-body-secondary" style="max-width: 520px;">
+      All foundations, components, and tokens for SquadFit. Near-black surfaces,
+      brand green as the singular functional accent, Manrope variable font.
+    </div>
+  </div>
+
+  <!-- ── COLORS: SURFACES ─────────────────────────────────────────────── -->
+  <section class="section" id="colors-surfaces">
+    <div class="section-title">Surfaces</div>
+    <p class="section-desc">Five dark layers. Depth is expressed through background lightness, not shadows. Shadows are reserved for modals and focus.</p>
+    <div class="divider"></div>
+    <div class="color-row">
+      <div class="swatch" style="background:#000; color:#fff; outline:1px solid #282828">
+        <div class="sw-role">bg-0</div>
+        <div><div class="sw-name">Black</div><div class="sw-hex">#000000</div></div>
+      </div>
+      <div class="swatch" style="background:#121212; color:#fff; outline:1px solid #282828">
+        <div class="sw-role">bg-1 · App</div>
+        <div><div class="sw-name">App bg</div><div class="sw-hex">#121212</div></div>
+      </div>
+      <div class="swatch" style="background:#181818; color:#fff">
+        <div class="sw-role">bg-2 · Card</div>
+        <div><div class="sw-name">Card</div><div class="sw-hex">#181818</div></div>
+      </div>
+      <div class="swatch" style="background:#282828; color:#fff">
+        <div class="sw-role">bg-3 · Hover</div>
+        <div><div class="sw-name">Raised</div><div class="sw-hex">#282828</div></div>
+      </div>
+      <div class="swatch" style="background:#3E3E3E; color:#fff">
+        <div class="sw-role">bg-4 · Divide</div>
+        <div><div class="sw-name">Divider</div><div class="sw-hex">#3E3E3E</div></div>
+      </div>
+    </div>
+
+    <div class="sub-label">Foreground</div>
+    <div class="color-row">
+      <div class="swatch" style="background:#181818">
+        <div class="sw-role" style="color:#fff; opacity:.5">fg-1</div>
+        <div><div class="sw-name" style="color:#fff">Primary</div><div class="sw-hex" style="color:#fff">#FFFFFF</div></div>
+      </div>
+      <div class="swatch" style="background:#181818">
+        <div class="sw-role" style="color:#B3B3B3; opacity:.7">fg-2</div>
+        <div><div class="sw-name" style="color:#B3B3B3">Secondary</div><div class="sw-hex" style="color:#B3B3B3">#B3B3B3</div></div>
+      </div>
+      <div class="swatch" style="background:#181818">
+        <div class="sw-role" style="color:#6A6A6A; opacity:.9">fg-3</div>
+        <div><div class="sw-name" style="color:#6A6A6A">Disabled</div><div class="sw-hex" style="color:#6A6A6A">#6A6A6A</div></div>
+      </div>
+      <div class="swatch" style="background:#1ED760">
+        <div class="sw-role" style="color:#000; opacity:.6">fg-on-green</div>
+        <div><div class="sw-name" style="color:#000">On Green</div><div class="sw-hex" style="color:#000">#000000</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLORS: BRAND GREEN ──────────────────────────────────────────── -->
+  <section class="section" id="colors-brand">
+    <div class="section-title">Brand Green</div>
+    <p class="section-desc">The singular accent. Never decorative — only for play controls, active states, and primary CTAs. Three interactive states plus two tint levels for subtle backgrounds.</p>
+    <div class="divider"></div>
+    <div class="grid-3" style="margin-bottom: 12px;">
+      <div class="swatch" style="background:#1ED760; color:#000; min-height: 110px;">
+        <div class="sw-role" style="opacity:.6">Primary</div>
+        <div>
+          <div class="sw-name">Brand Green</div>
+          <div class="sw-hex">#1ED760</div>
+          <span class="green-pill" style="background:rgba(0,0,0,0.15)">CTA · Active</span>
+        </div>
+      </div>
+      <div class="swatch" style="background:#1FDF64; color:#000; min-height: 110px;">
+        <div class="sw-role" style="opacity:.6">Hover +4%</div>
+        <div>
+          <div class="sw-name">Hover</div>
+          <div class="sw-hex">#1FDF64</div>
+          <span class="green-pill" style="background:rgba(0,0,0,0.15)">Hover state</span>
+        </div>
+      </div>
+      <div class="swatch" style="background:#169C46; color:#fff; min-height: 110px;">
+        <div class="sw-role" style="opacity:.7">Pressed −6%</div>
+        <div>
+          <div class="sw-name">Pressed</div>
+          <div class="sw-hex">#169C46</div>
+          <span class="green-pill" style="background:rgba(0,0,0,0.25); color:#fff">Pressed</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="swatch" style="background:rgba(30,215,96,0.08); color:#1ED760; outline:1px solid rgba(30,215,96,0.16); min-height: 96px;">
+        <div class="sw-role" style="opacity:.8">Tint 8%</div>
+        <div>
+          <div class="sw-name">Subtle bg</div>
+          <div class="sw-hex">rgba(30,215,96,.08)</div>
+          <span class="green-pill" style="background:rgba(30,215,96,0.16); color:#1ED760; margin-top:8px">Selected row</span>
+        </div>
+      </div>
+      <div class="swatch" style="background:rgba(30,215,96,0.16); color:#1ED760; min-height: 96px;">
+        <div class="sw-role" style="opacity:.8">Tint 16%</div>
+        <div>
+          <div class="sw-name">Highlighted</div>
+          <div class="sw-hex">rgba(30,215,96,.16)</div>
+          <span class="green-pill" style="background:#1ED760; color:#000; margin-top:8px">Verified badge</span>
+        </div>
+      </div>
+      <div class="swatch" style="background:#121212; color:#1ED760; outline:1px solid #282828; min-height: 96px;">
+        <div class="sw-role" style="opacity:.6">On dark</div>
+        <div>
+          <div class="sw-name">Text accent</div>
+          <div class="sw-hex">#1ED760 on #121212</div>
+          <div style="font-weight:800; font-size:22px; margin-top:8px">+12 min</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLORS: SEMANTIC ─────────────────────────────────────────────── -->
+  <section class="section" id="colors-semantic">
+    <div class="section-title">Semantic Colors</div>
+    <p class="section-desc">System feedback colors. Used only for their specific meaning — never repurposed as decorative accents.</p>
+    <div class="divider"></div>
+    <div class="grid-2">
+      <div class="swatch-sm">
+        <div class="swatch-dot" style="background:#F15E6C"></div>
+        <div><div class="sw-role">Error</div><div class="sw-name">Destructive</div><div class="sw-hex">#F15E6C</div></div>
+      </div>
+      <div class="swatch-sm">
+        <div class="swatch-dot" style="background:#FFC72C"></div>
+        <div><div class="sw-role">Warning</div><div class="sw-name">Reset incoming</div><div class="sw-hex">#FFC72C</div></div>
+      </div>
+      <div class="swatch-sm">
+        <div class="swatch-dot" style="background:#1ED760"></div>
+        <div><div class="sw-role">Success</div><div class="sw-name">Logged · Verified</div><div class="sw-hex">#1ED760</div></div>
+      </div>
+      <div class="swatch-sm">
+        <div class="swatch-dot" style="background:#4DA3FF"></div>
+        <div><div class="sw-role">Info</div><div class="sw-name">Coach note</div><div class="sw-hex">#4DA3FF</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLORS: PODIUM ───────────────────────────────────────────────── -->
+  <section class="section" id="colors-podium">
+    <div class="section-title">Podium Colors</div>
+    <p class="section-desc">Leaderboard rank indicators. Used exclusively for #1, #2, #3 positions — medals, rank numbers, and highlight rings.</p>
+    <div class="divider"></div>
+    <div class="grid-3">
+      <div class="podium-swatch" style="background:#FFD24A; color:#000">
+        <div class="podium-row">
+          <div class="podium-medal" style="background:#000; color:#FFD24A">1</div>
+          <div style="font-weight: 800; font-size: 15px;">Gold</div>
+        </div>
+        <div class="sw-hex">#FFD24A</div>
+        <div style="font-size:12px; opacity:.7">Cardio King · #1 Strength</div>
+      </div>
+      <div class="podium-swatch" style="background:#C8C9CB; color:#000">
+        <div class="podium-row">
+          <div class="podium-medal" style="background:#000; color:#C8C9CB">2</div>
+          <div style="font-weight: 800; font-size: 15px;">Silver</div>
+        </div>
+        <div class="sw-hex">#C8C9CB</div>
+        <div style="font-size:12px; opacity:.7">Runner-up</div>
+      </div>
+      <div class="podium-swatch" style="background:#CD7F32; color:#000">
+        <div class="podium-row">
+          <div class="podium-medal" style="background:#000; color:#CD7F32">3</div>
+          <div style="font-weight: 800; font-size: 15px;">Bronze</div>
+        </div>
+        <div class="sw-hex">#CD7F32</div>
+        <div style="font-size:12px; opacity:.7">Top 3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TYPOGRAPHY: SCALE ─────────────────────────────────────────────── -->
+  <section class="section" id="type-scale">
+    <div class="section-title">Type Scale</div>
+    <p class="section-desc">Manrope variable font (200–800). Compact range — 11px to 56px. Bold/regular binary: most text is 800 (display), 700 (headings), or 400 (body). 500–600 used sparingly.</p>
+    <div class="divider"></div>
+    <div style="margin-bottom: 6px;">
+      <span class="sf-eyebrow" style="color: var(--green-1);">Manrope · variable · local</span>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Display</div>
+      <div class="type-meta">56 / 800 · −2%</div>
+      <div class="sf-display">Cardio King</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">H1</div>
+      <div class="type-meta">40 / 800 · −2%</div>
+      <div class="sf-h1">Bench press</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">H2</div>
+      <div class="type-meta">28 / 700 · −1%</div>
+      <div class="sf-h2">This week</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">H3</div>
+      <div class="type-meta">22 / 700</div>
+      <div class="sf-h3">Squad: Mai's Crew</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Lead</div>
+      <div class="type-meta">17 / 500</div>
+      <div class="sf-lead">Log your cardio, earn your rank.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Body</div>
+      <div class="type-meta">15 / 400</div>
+      <div class="sf-body">Submit your session with photo proof.</div>
+    </div>
+  </section>
+
+  <!-- ── TYPOGRAPHY: BODY ───────────────────────────────────────────────── -->
+  <section class="section" id="type-body">
+    <div class="section-title">Body & Meta</div>
+    <p class="section-desc">Smaller scales used for secondary text, labels, captions, and UI chrome.</p>
+    <div class="divider"></div>
+    <div class="type-row">
+      <div class="type-role">Body sec.</div>
+      <div class="type-meta">15 / 400 · fg-2</div>
+      <div class="sf-body-secondary">3 sessions · last 23 min ago</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Caption</div>
+      <div class="type-meta">13 / 500 · fg-2</div>
+      <div class="sf-caption">Coach-verified · Week 3</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Eyebrow</div>
+      <div class="type-meta">11 / 700 · +8%</div>
+      <div class="sf-eyebrow">Leaderboard</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Numeral</div>
+      <div class="type-meta">tabular-nums</div>
+      <div class="sf-num sf-h2" style="color: var(--green-1);">147 min</div>
+    </div>
+    <div class="type-row">
+      <div class="type-role">Mono</div>
+      <div class="type-meta">ui-monospace</div>
+      <div class="sf-mono">K9X7-MAYA</div>
+    </div>
+  </section>
+
+  <!-- ── SPACING: SCALE ────────────────────────────────────────────────── -->
+  <section class="section" id="spacing-scale">
+    <div class="section-title">Spacing Scale</div>
+    <p class="section-desc">4px base unit. Eight steps from 4px to 64px. Use tokens, never magic numbers.</p>
+    <div class="divider"></div>
+    <div class="spacing-scale">
+      <div class="spacing-step"><div class="spacing-bar" style="height:4px"></div><div class="spacing-v">4</div><div class="spacing-lbl">sp-1</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:8px"></div><div class="spacing-v">8</div><div class="spacing-lbl">sp-2</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:12px"></div><div class="spacing-v">12</div><div class="spacing-lbl">sp-3</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:16px"></div><div class="spacing-v">16</div><div class="spacing-lbl">sp-4</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:24px"></div><div class="spacing-v">24</div><div class="spacing-lbl">sp-6</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:32px"></div><div class="spacing-v">32</div><div class="spacing-lbl">sp-8</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:48px"></div><div class="spacing-v">48</div><div class="spacing-lbl">sp-12</div></div>
+      <div class="spacing-step"><div class="spacing-bar" style="height:64px"></div><div class="spacing-v">64</div><div class="spacing-lbl">sp-16</div></div>
+    </div>
+  </section>
+
+  <!-- ── SPACING: RADII ────────────────────────────────────────────────── -->
+  <section class="section" id="spacing-radii">
+    <div class="section-title">Border Radii</div>
+    <p class="section-desc">Four steps. Tags are sharp, cards are soft, pills are fully rounded. Avatars and FABs use 999px (circle).</p>
+    <div class="divider"></div>
+    <div class="radii-row">
+      <div class="radii-demo">
+        <div class="radii-box" style="height:80px; border-radius:4px"></div>
+        <div class="radii-v">4px</div>
+        <div class="radii-lbl">Tags</div>
+      </div>
+      <div class="radii-demo">
+        <div class="radii-box" style="height:80px; border-radius:8px"></div>
+        <div class="radii-v">8px</div>
+        <div class="radii-lbl">Cards · Photos</div>
+      </div>
+      <div class="radii-demo">
+        <div class="radii-box" style="height:80px; border-radius:12px"></div>
+        <div class="radii-v">12px</div>
+        <div class="radii-lbl">Sheets · Modals</div>
+      </div>
+      <div class="radii-demo">
+        <div class="radii-box" style="height:44px; border-radius:999px; margin-top:18px"></div>
+        <div class="radii-v">999px</div>
+        <div class="radii-lbl">Pills · Avatars</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPACING: ELEVATION ─────────────────────────────────────────────── -->
+  <section class="section" id="spacing-elevation">
+    <div class="section-title">Elevation</div>
+    <p class="section-desc">Dark UI expresses depth via background lightness, not drop shadows. Shadows appear only at modal level and for focus rings.</p>
+    <div class="divider"></div>
+    <div class="elevation-row">
+      <div class="elevation-card" style="background:#181818">
+        <div class="elevation-stack">
+          <div class="elevation-lbl">No shadow · bg-2</div>
+          <div class="elevation-val">Card default</div>
+        </div>
+      </div>
+      <div class="elevation-card" style="background:#1F1F1F">
+        <div class="elevation-stack">
+          <div class="elevation-lbl">Hover · #1F1F1F</div>
+          <div class="elevation-val">Lifted via lightness</div>
+        </div>
+      </div>
+      <div class="elevation-card" style="background:#282828; box-shadow: 0 16px 48px rgba(0,0,0,0.6);">
+        <div class="elevation-stack">
+          <div class="elevation-lbl">Modal / sheet</div>
+          <div class="elevation-val">0 16px 48px rgba(0,0,0,.6)</div>
+        </div>
+      </div>
+      <div class="elevation-card" style="background:#121212; box-shadow: 0 0 0 2px #121212, 0 0 0 4px #1ED760;">
+        <div class="elevation-stack">
+          <div class="elevation-lbl">Focus ring</div>
+          <div class="elevation-val">2px green @ 2px offset</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS: BUTTONS ───────────────────────────────────────────── -->
+  <section class="section" id="comp-buttons">
+    <div class="section-title">Buttons</div>
+    <p class="section-desc">All buttons are pill-shaped (999px). Primary uses brand green. Ghost for secondary actions. FAB floats above the tab bar for the primary action on each screen.</p>
+    <div class="divider"></div>
+    <div class="sub-label">Primary · Pill</div>
+    <div class="btn-row">
+      <button class="sf-pill sf-pill--primary">Log cardio</button>
+      <button class="sf-pill sf-pill--primary">Submit · 23 min</button>
+      <button class="sf-pill sf-pill--primary" style="opacity:.4; pointer-events:none">Disabled</button>
+    </div>
+    <div class="sub-label">Ghost · Secondary</div>
+    <div class="btn-row">
+      <button class="sf-pill sf-pill--ghost">Cancel</button>
+      <button class="sf-pill sf-pill--ghost">Add exercise</button>
+      <button class="sf-pill sf-pill--surface">Filter</button>
+    </div>
+    <div class="sub-label">FAB · Floating action</div>
+    <div class="btn-row" style="align-items: center; gap: 16px;">
+      <button class="btn-fab">＋</button>
+      <span class="sf-caption">Floats above tab bar · primary action per screen</span>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS: INPUTS ─────────────────────────────────────────────── -->
+  <section class="section" id="comp-inputs">
+    <div class="section-title">Inputs</div>
+    <p class="section-desc">Text fields, number steppers, and toggles. Focus ring uses the green double-ring pattern for maximum visibility on dark.</p>
+    <div class="divider"></div>
+    <div class="sub-label">Text fields</div>
+    <div class="btn-row">
+      <input class="sf-field" placeholder="Squad name">
+      <input class="sf-field" value="K9X7-MAYA" style="font-family: var(--font-mono); letter-spacing: 0.05em;">
+    </div>
+    <div class="sub-label">Number stepper · Cardio minutes</div>
+    <div class="btn-row" style="align-items: center; gap: 16px;">
+      <div class="stepper">
+        <button>−</button>
+        <div class="sv">23</div>
+        <button>+</button>
+      </div>
+      <span class="sf-caption">min</span>
+    </div>
+    <div class="sub-label">Toggles</div>
+    <div class="btn-row" style="align-items: center; gap: 12px;">
+      <div class="toggle"></div>
+      <span class="sf-caption">Public proof (on)</span>
+      <div style="width:24px"></div>
+      <div class="toggle off"></div>
+      <span class="sf-caption">kg / lb (off)</span>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS: CHIPS & BADGES ────────────────────────────────────── -->
+  <section class="section" id="comp-chips">
+    <div class="section-title">Chips & Badges</div>
+    <p class="section-desc">Filter chips for tab navigation. Status badges for compact metadata — always uppercase with tight letter-spacing.</p>
+    <div class="divider"></div>
+    <div class="sub-label">Filter chips</div>
+    <div class="btn-row">
+      <span class="chip chip--active">All</span>
+      <span class="chip">This week</span>
+      <span class="chip">Cardio</span>
+      <span class="chip">Strength</span>
+      <span class="chip chip--ghost">+ Custom</span>
+    </div>
+    <div class="sub-label">Status badges</div>
+    <div class="btn-row">
+      <span class="badge badge--verified">✓ Coach verified</span>
+      <span class="badge badge--live">● Live</span>
+      <span class="badge badge--pr">PR</span>
+      <span class="badge badge--neutral">This week</span>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS: AVATARS ────────────────────────────────────────────── -->
+  <section class="section" id="comp-avatars">
+    <div class="section-title">Avatars</div>
+    <p class="section-desc">Initial-based avatars with a per-member color. Six distinct hues derived from a set palette — never reused within a squad. Fallback is bg-3 (#282828).</p>
+    <div class="divider"></div>
+    <div class="avatar-grid">
+      <div class="avatar-item">
+        <div class="avatar" style="background:#5B47C7">M</div>
+        <div class="avatar-name">Maya R.</div>
+        <div class="avatar-lbl">Purple</div>
+      </div>
+      <div class="avatar-item">
+        <div class="avatar" style="background:#C7474D">J</div>
+        <div class="avatar-name">James K.</div>
+        <div class="avatar-lbl">Red</div>
+      </div>
+      <div class="avatar-item">
+        <div class="avatar" style="background:#477BC7">S</div>
+        <div class="avatar-name">Sara P.</div>
+        <div class="avatar-lbl">Blue</div>
+      </div>
+      <div class="avatar-item">
+        <div class="avatar" style="background:#47C77A">Y</div>
+        <div class="avatar-name">You</div>
+        <div class="avatar-lbl">Green</div>
+      </div>
+      <div class="avatar-item">
+        <div class="avatar" style="background:#C77A47">D</div>
+        <div class="avatar-name">Dani N.</div>
+        <div class="avatar-lbl">Orange</div>
+      </div>
+      <div class="avatar-item">
+        <div class="avatar" style="background:#282828">+</div>
+        <div class="avatar-name">Empty</div>
+        <div class="avatar-lbl">Fallback</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS: LEADERBOARD ────────────────────────────────────────── -->
+  <section class="section" id="comp-leaderboard">
+    <div class="section-title">Leaderboard Row</div>
+    <p class="section-desc">56px touch target. Top 3 show podium medals. Current user row uses a subtle green tint (8%) to identify position at a glance.</p>
+    <div class="divider"></div>
+    <div class="lb-list">
+      <div class="lb-row">
+        <div class="lb-rank"><div class="lb-medal" style="background:#FFD24A">1</div></div>
+        <div class="lb-av" style="background:#5B47C7">M</div>
+        <div class="lb-name"><b>Maya R.</b><span>4 sessions · last 23 min ago</span></div>
+        <div class="lb-metric green">147 min</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank"><div class="lb-medal" style="background:#C8C9CB">2</div></div>
+        <div class="lb-av" style="background:#C7474D">J</div>
+        <div class="lb-name"><b>James K.</b><span>3 sessions</span></div>
+        <div class="lb-metric">139 min</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank"><div class="lb-medal" style="background:#CD7F32">3</div></div>
+        <div class="lb-av" style="background:#477BC7">S</div>
+        <div class="lb-name"><b>Sara P.</b><span>5 sessions</span></div>
+        <div class="lb-metric">112 min</div>
+      </div>
+      <div class="lb-row" style="background: rgba(30,215,96,0.08);">
+        <div class="lb-rank" style="color:#B3B3B3; font-size:16px">4</div>
+        <div class="lb-av" style="background:#47C77A">Y</div>
+        <div class="lb-name"><b>You</b><span>3 sessions · 8 min behind</span></div>
+        <div class="lb-metric">104 min</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank" style="color:#B3B3B3; font-size:16px">5</div>
+        <div class="lb-av" style="background:#C77A47">D</div>
+        <div class="lb-name"><b>Dani N.</b><span>2 sessions</span></div>
+        <div class="lb-metric">88 min</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS: CARDS ──────────────────────────────────────────────── -->
+  <section class="section" id="comp-cards">
+    <div class="section-title">Cards</div>
+    <p class="section-desc">bg-2 (#181818) base, 8px radius. Hover lifts to #1F1F1F — no shadow, only lightness change. No visible border lines.</p>
+    <div class="divider"></div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <div class="card-demo" style="cursor:pointer">
+        <div class="sf-eyebrow" style="margin-bottom: 8px;">This week</div>
+        <div class="sf-h3" style="margin-bottom: 4px;">147 min</div>
+        <div class="sf-caption">4 cardio sessions logged</div>
+      </div>
+      <div class="card-demo" style="cursor:pointer">
+        <div class="sf-eyebrow" style="margin-bottom: 8px;">Streak</div>
+        <div class="sf-h3" style="color: var(--green-1); margin-bottom: 4px;">7 days</div>
+        <div class="sf-caption">Keep it going</div>
+      </div>
+      <div class="card-demo" style="cursor:pointer; display:flex; gap:14px; align-items:center">
+        <div class="avatar" style="background:#5B47C7; width:48px; height:48px; font-size:16px; flex: 0 0 48px;">M</div>
+        <div>
+          <div style="font-weight:700; font-size:15px; margin-bottom:2px;">Maya R.</div>
+          <div class="sf-caption">Coach verified · 3 sessions</div>
+        </div>
+      </div>
+      <div class="card-demo" style="cursor:pointer; display:flex; gap:14px; align-items:center; justify-content:space-between;">
+        <div>
+          <div style="font-weight:700; font-size:15px; margin-bottom:2px;">Bench Press</div>
+          <div class="sf-caption">Last: 85 kg × 8</div>
+        </div>
+        <span class="badge badge--pr">PR</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MOTION ─────────────────────────────────────────────────────────── -->
+  <section class="section" id="motion">
+    <div class="section-title">Motion</div>
+    <p class="section-desc">Three durations, two easing curves. Enter is snappy and decelerating. Exit is brisk and accelerating. Fast (120ms) for micro-interactions, base (240ms) for transitions, slow (480ms) for page-level.</p>
+    <div class="divider"></div>
+    <div class="sub-label">Tokens</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>--dur-fast</td><td>120ms</td><td>Button press, toggle, hover</td></tr>
+        <tr><td>--dur-base</td><td>240ms</td><td>Modal open, sheet slide, card expand</td></tr>
+        <tr><td>--dur-slow</td><td>480ms</td><td>Page transition, large layout change</td></tr>
+        <tr><td>--ease-enter</td><td>cubic-bezier(0.3,0,0,1)</td><td>Elements appearing — decelerates to rest</td></tr>
+        <tr><td>--ease-exit</td><td>cubic-bezier(0.4,0,1,1)</td><td>Elements leaving — accelerates out</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-label" style="margin-top: 24px;">Interactive demo — hover to see transitions</div>
+    <div class="motion-demo">
+      <div class="motion-box" style="transition-duration: 120ms; transition-timing-function: cubic-bezier(0.3,0,0,1);">
+        <span>Fast<br>120ms</span>
+      </div>
+      <div class="motion-box" style="transition-duration: 240ms; transition-timing-function: cubic-bezier(0.3,0,0,1);">
+        <span>Base<br>240ms</span>
+      </div>
+      <div class="motion-box" style="transition-duration: 480ms; transition-timing-function: cubic-bezier(0.3,0,0,1);">
+        <span>Slow<br>480ms</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DO & DON'T ─────────────────────────────────────────────────────── -->
+  <section class="section" id="do-dont">
+    <div class="section-title">Do & Don't</div>
+    <p class="section-desc">The rules that define the system's identity. Violating these breaks the immersive dark-theater feel.</p>
+    <div class="divider"></div>
+    <div class="do-dont">
+      <div class="do-card">
+        <h4>Do</h4>
+        <ul>
+          <li>Use near-black backgrounds (#121212–#1F1F1F)</li>
+          <li>Apply brand green only for CTAs and active states</li>
+          <li>Pill shape (999px) for all buttons</li>
+          <li>Uppercase + wide tracking on button labels</li>
+          <li>Keep typography compact (11–56px range)</li>
+          <li>Use heavy shadows (0.3–0.6 opacity) for modals</li>
+          <li>Express hover with bg lightness, not borders</li>
+          <li>Use tabular-nums on all metric/rank numerals</li>
+        </ul>
+      </div>
+      <div class="dont-card">
+        <h4>Don't</h4>
+        <ul>
+          <li>Don't use green decoratively or as a background fill</li>
+          <li>Don't use light surfaces as primary backgrounds</li>
+          <li>Don't use square buttons — pill/circle only</li>
+          <li>Don't use thin shadows — invisible on dark</li>
+          <li>Don't add new brand colors — green + grays is complete</li>
+          <li>Don't use relaxed line-heights on body text</li>
+          <li>Don't show raw gray borders — use lightness or shadow</li>
+          <li>Don't mix coach and member surfaces in one route</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ALL TOKENS ─────────────────────────────────────────────────────── -->
+  <section class="section" id="tokens">
+    <div class="section-title">All Tokens</div>
+    <p class="section-desc">Complete CSS custom property reference. Defined in <code class="sf-mono">design-system/colors_and_type.css</code>.</p>
+    <div class="divider"></div>
+    <div class="sub-label">Surfaces</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>--bg-0</td><td>#000000</td><td>Full-bleed photo backdrops</td></tr>
+        <tr><td>--bg-1</td><td>#121212</td><td>Default app background</td></tr>
+        <tr><td>--bg-2</td><td>#181818</td><td>Default card surface</td></tr>
+        <tr><td>--bg-3</td><td>#282828</td><td>Raised / hover / inputs</td></tr>
+        <tr><td>--bg-4</td><td>#3E3E3E</td><td>Dividers, disabled wells</td></tr>
+        <tr><td>--fg-1</td><td>#FFFFFF</td><td>Primary text</td></tr>
+        <tr><td>--fg-2</td><td>#B3B3B3</td><td>Secondary text</td></tr>
+        <tr><td>--fg-3</td><td>#6A6A6A</td><td>Tertiary / disabled</td></tr>
+        <tr><td>--fg-on-green</td><td>#000000</td><td>Text on brand-green fills</td></tr>
+        <tr><td>--hairline</td><td>#282828</td><td>Divider lines</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-label">Brand</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>--green-1</td><td>#1ED760</td><td>Primary CTA, active states, brand</td></tr>
+        <tr><td>--green-1-hover</td><td>#1FDF64</td><td>Hover state (+4% lightness)</td></tr>
+        <tr><td>--green-1-pressed</td><td>#169C46</td><td>Pressed state (−6% lightness)</td></tr>
+        <tr><td>--green-tint-08</td><td>rgba(30,215,96,0.08)</td><td>Selected row background</td></tr>
+        <tr><td>--green-tint-16</td><td>rgba(30,215,96,0.16)</td><td>Highlighted background</td></tr>
+        <tr><td>--gold</td><td>#FFD24A</td><td>Rank #1 medal</td></tr>
+        <tr><td>--silver</td><td>#C8C9CB</td><td>Rank #2 medal</td></tr>
+        <tr><td>--bronze</td><td>#CD7F32</td><td>Rank #3 medal</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-label">Semantic</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>--error</td><td>#F15E6C</td><td>Destructive / validation error</td></tr>
+        <tr><td>--warning</td><td>#FFC72C</td><td>Caution / reset incoming</td></tr>
+        <tr><td>--success</td><td>#1ED760</td><td>Logged · verified (reuses brand)</td></tr>
+        <tr><td>--info</td><td>#4DA3FF</td><td>Coach note / informational</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-label">Spacing</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>--sp-1</td><td>4px</td><td></td></tr>
+        <tr><td>--sp-2</td><td>8px</td><td></td></tr>
+        <tr><td>--sp-3</td><td>12px</td><td></td></tr>
+        <tr><td>--sp-4</td><td>16px</td><td></td></tr>
+        <tr><td>--sp-6</td><td>24px</td><td></td></tr>
+        <tr><td>--sp-8</td><td>32px</td><td></td></tr>
+        <tr><td>--sp-12</td><td>48px</td><td></td></tr>
+        <tr><td>--sp-16</td><td>64px</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="sub-label">Radii</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>--radius-1</td><td>4px</td><td>Tags, badges</td></tr>
+        <tr><td>--radius-2</td><td>8px</td><td>Cards, tiles, photo thumbs</td></tr>
+        <tr><td>--radius-3</td><td>12px</td><td>Sheets, modals, drawers</td></tr>
+        <tr><td>--radius-pill</td><td>999px</td><td>Buttons, chips, avatars</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-label">Shadows & Focus</div>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>--shadow-modal</td><td>0 16px 48px rgba(0,0,0,0.6)</td><td>Modals, sheets, menus</td></tr>
+        <tr><td>--scrim-modal</td><td>rgba(0,0,0,0.6)</td><td>Backdrop overlay</td></tr>
+        <tr><td>--focus-ring</td><td>0 0 0 2px var(--bg-1), 0 0 0 4px var(--green-1)</td><td>Keyboard focus indicator</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+</body>
+</html>

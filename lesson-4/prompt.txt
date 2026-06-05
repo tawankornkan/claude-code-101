@@ -1,10 +1,16 @@
 ## Prompt 1 — Review PRD ด้วย Sub-agents
 
-ใช้ agent ทั้ง 3 ตัว review @prd-redflagfinder.md พร้อมกัน ได้แก่
+ใช้ agent ทั้ง 3 ตัว review @prd-squadfit.md พร้อมกัน ได้แก่
 engineer, executive และ user-researcher
 
 ---
 
 ## Prompt 2 — ใช้ /review-prd Command
 
-/review-prd @prd-redflagfinder.md
+/review-prd @prd-squadfit.md
+
+---
+
+## Prompt 3 — ใช้ /review-prd-skill Command (7 agents)
+
+/review-prd-skill @prd-squadfit.md

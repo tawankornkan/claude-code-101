@@ -1,0 +1,51 @@
+user_id,age,role,city,occupation,overall_satisfaction,nps_score,log_speed_rating,ease_of_use,would_pay_premium,preferred_price_thb,top_feature_request,weeks_active,sessions_logged,leaderboard_engagement
+U001,24,trainee,Bangkok,Marketing Staff,4,8,4,4,Yes,99,streak_counter,4,12,5
+U002,29,trainee,Bangkok,Engineer,3,6,3,3,No,0,strength_log_self,3,7,3
+U003,26,trainee,Bangkok,Nurse,5,10,5,5,Yes,149,push_notifications,6,22,5
+U004,31,trainee,Chiang Mai,Sales Manager,4,7,4,4,Yes,99,weekly_summary,5,15,4
+U005,23,trainee,Bangkok,Student,5,9,5,5,Yes,79,squad_chat,6,24,5
+U006,32,coach,Bangkok,Personal Trainer,4,8,5,4,Yes,299,custom_exercises,6,0,2
+U007,27,trainee,Bangkok,Graphic Designer,3,5,3,3,No,0,rest_day_toggle,2,5,2
+U008,25,trainee,Khon Kaen,Student,4,7,4,4,Yes,79,push_notifications,5,18,4
+U009,30,trainee,Bangkok,HR Officer,5,10,5,5,Yes,149,weekly_summary,6,25,5
+U010,28,trainee,Bangkok,Accountant,4,8,4,5,Yes,99,streak_counter,5,16,4
+U011,22,trainee,Bangkok,Student,5,9,5,5,Yes,79,squad_chat,6,28,5
+U012,35,coach,Chiang Mai,Personal Trainer,3,6,4,3,Yes,249,custom_exercises,4,0,1
+U013,26,trainee,Bangkok,Teacher,4,7,4,4,Yes,99,workout_history,5,14,4
+U014,33,trainee,Bangkok,Freelancer,3,5,2,3,No,0,rest_day_toggle,2,4,2
+U015,24,trainee,Bangkok,Student,5,10,5,5,Yes,79,streak_counter,6,26,5
+U016,29,trainee,Nonthaburi,Office Staff,4,8,4,4,Yes,99,push_notifications,5,17,4
+U017,38,coach,Bangkok,Gym Owner,5,9,5,5,Yes,399,squad_analytics,6,0,3
+U018,27,trainee,Bangkok,Startup Employee,4,7,4,4,Yes,149,personal_goals,4,13,4
+U019,21,trainee,Bangkok,Student,5,9,5,5,Yes,79,squad_chat,6,29,5
+U020,34,trainee,Bangkok,Doctor,4,8,4,4,Yes,199,workout_history,5,19,4
+U021,25,trainee,Bangkok,Marketing Staff,4,8,4,4,Yes,99,streak_counter,5,16,4
+U022,30,trainee,Bangkok,Pharmacist,5,9,5,5,Yes,149,weekly_summary,6,21,5
+U023,22,trainee,Bangkok,Student,5,10,5,5,Yes,79,squad_chat,6,30,5
+U024,36,coach,Bangkok,Personal Trainer,4,8,5,4,Yes,299,custom_exercises,6,0,2
+U025,28,trainee,Phuket,Hotel Staff,3,6,3,3,No,0,rest_day_toggle,2,6,2
+U026,24,trainee,Bangkok,Student,5,9,5,5,Yes,79,streak_counter,6,27,5
+U027,31,trainee,Bangkok,Civil Engineer,4,7,4,4,Yes,99,workout_history,5,14,4
+U028,27,trainee,Chiang Rai,Teacher,4,7,4,4,Yes,99,push_notifications,4,13,3
+U029,33,trainee,Bangkok,Lawyer,3,5,3,3,No,0,rest_day_toggle,2,5,2
+U030,26,trainee,Bangkok,UX Designer,5,9,5,5,Yes,149,personal_goals,6,23,5
+U031,40,coach,Bangkok,Gym Owner,5,10,5,5,Yes,399,squad_analytics,6,0,3
+U032,23,trainee,Bangkok,Student,5,9,5,5,Yes,79,squad_chat,6,28,5
+U033,29,trainee,Nonthaburi,Office Staff,4,8,4,4,Yes,99,push_notifications,5,17,4
+U034,35,trainee,Bangkok,Product Manager,4,8,4,4,Yes,199,weekly_summary,5,18,4
+U035,25,trainee,Bangkok,Nurse,4,7,4,4,Yes,99,streak_counter,4,15,4
+U036,28,trainee,Bangkok,Software Engineer,3,6,3,3,No,0,strength_log_self,3,6,2
+U037,32,coach,Chiang Mai,Personal Trainer,4,7,4,4,Yes,249,custom_exercises,5,0,2
+U038,21,trainee,Bangkok,Student,5,10,5,5,Yes,79,squad_chat,6,31,5
+U039,27,trainee,Bangkok,Startup Employee,4,8,4,4,Yes,149,personal_goals,5,16,4
+U040,34,trainee,Bangkok,Dentist,4,8,4,5,Yes,199,workout_history,5,20,4
+U041,26,trainee,Bangkok,Graphic Designer,3,5,3,3,No,0,rest_day_toggle,2,4,2
+U042,30,trainee,Khon Kaen,Teacher,4,7,4,4,Yes,79,push_notifications,4,12,3
+U043,22,trainee,Bangkok,Student,5,9,5,5,Yes,79,streak_counter,6,26,5
+U044,38,coach,Bangkok,Fitness Coach,5,9,5,5,Yes,349,squad_analytics,6,0,3
+U045,29,trainee,Bangkok,Accountant,4,8,4,4,Yes,99,weekly_summary,5,15,4
+U046,24,trainee,Pattaya,Sales Staff,3,6,3,3,No,0,rest_day_toggle,3,7,2
+U047,31,trainee,Bangkok,HR Manager,4,7,4,4,Yes,149,personal_goals,4,13,3
+U048,25,trainee,Bangkok,Student,5,10,5,5,Yes,79,squad_chat,6,29,5
+U049,33,trainee,Bangkok,Freelancer,4,8,4,4,Yes,99,workout_history,5,14,4
+U050,27,trainee,Bangkok,Content Creator,4,8,4,5,Yes,149,streak_counter,5,18,5

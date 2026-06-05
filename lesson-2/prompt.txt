@@ -1,12 +1,9 @@
-## Prompt 1 — สรุป User Research
+อ่าน @lesson-2/beta-survey-results.csv  แล้วสร้างไฟล์ report.html
 
-อ่าน @user-interviews แล้วสร้างไฟล์สรุป:
-1. Pain points ที่พูดถึงบ่อยที่สุด 3 อันดับแรก
-2. Feature ที่ผู้ใช้อยากได้มากที่สุด
-3. ช่วง Willingness to Pay และ segment ที่ต่างกัน
+report ควรมี:
+1. สรุป headline metrics — satisfaction score เฉลี่ย, NPS, % ที่ยินดีจ่าย premium
+2. Feature ที่ผู้ใช้ขอบ่อยที่สุด
+3. Willingness to pay แยกตาม segment (อายุ, เมือง)
+4. ข้อเสนอแนะสำหรับทีม product 3 ข้อ
 
----
-
-## Prompt 2 — เขียนตาม Communication Style
-
-อ่าน @style-slack.md แล้วเขียน Slack message
+ทำให้ดูดี อ่านง่าย ดู @docs/design-system.html เป็นตัวอย่าง

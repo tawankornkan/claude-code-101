@@ -1,47 +1,44 @@
-# RedFlagFinder — Project Instructions
+# SquadFit — คำแนะนำโปรเจกต์
 
-## Product Overview
+## ภาพรวม Product
 
-**RedFlagFinder** is a dating app that helps users spot red flags before wasting time on the wrong person.
+**SquadFit** คือ closed accountability app สำหรับ personal trainer และลูกเทรน
 
-**Tagline:** *"Find love. Spot the warning signs first."*
+**Tagline:** *"Log it. Rank it. Flex it."*
 
-**Target Users:** People who've been in toxic relationships, cautious daters, Gen Z who appreciate self-aware humor.
+**กลุ่มเป้าหมาย:** Personal trainer ที่มี squad อยู่แล้ว และ trainee ที่ต้องการ accountability กับ friendly competition
+
+---
+
+## User Roles
+
+| Role | รายละเอียด |
+|------|------------|
+| **Coach (Trainer)** | เจ้าของ squad คนเดียว log strength data แทน trainee, verify session, และดู squad activity ทำงาน quick admin ระหว่าง session ส่วนใหญ่ใช้บนมือถือ ไม่แข่ง leaderboard |
+| **Trainee (Member)** | สมาชิก squad log cardio พร้อม photo proof บังคับ และ track rank รายสัปดาห์ ผู้ใช้หลัก — ต้อง log ได้ภายใน 15 วินาที squad กรุงเทพ ส่วนใหญ่เป็นคนไทย ระดับฟิตเนสหลากหลาย |
 
 ---
 
 ## Core Features
 
-| Feature | Description |
-|---------|-------------|
-| **Profile Red Flag Score** | AI analyzes each user's profile and assigns a red flag score 🚩 |
-| **Chat Analyzer** | Detects red flag patterns in conversations (love bombing, gaslighting, etc.) |
-| **Match System** | Standard swipe-to-match like Tinder |
-| **Red Flag Feed** | Anonymous community feed where users share red flag stories |
+| Feature | รายละเอียด |
+|---------|------------|
+| **Cardio Log** | Trainee ส่ง session พร้อม photo proof บังคับ (selfie ที่ location หรือ equipment) |
+| **Strength Log** | Coach log strength data (น้ำหนัก, reps, sets) ให้ trainee หลัง session |
+| **Weekly Leaderboard** | จัดอันดับ trainee ทุกคนตาม session point; reset ทุกเดือน |
 
 ---
 
 ## Business Model
 
-- **Freemium** — limited red flag score views for free
-- **Premium** — unlimited chat analysis + detailed reports
+- **Per-squad subscription** — coach จ่ายรายเดือน; trainee ใช้ฟรี
+- **ไม่มี freemium, ไม่มี marketplace** — เป็น closed squad tool เท่านั้น
 
 ---
 
 ## Tech Stack
 
 - **Frontend:** Next.js + Tailwind CSS
-- **Backend:** Node.js + Express
-- **Database:** PostgreSQL
-- **AI:** Claude API (red flag analysis)
-- **Auth:** JWT
+- **Backend:** Supabase (Database, Auth, Storage)
 
 ---
-
-## Response Format
-
-Always start every response with a one-line summary:
-
-**TL;DR:** <one sentence summary of what you just answered or did>
-
-This applies to every response — explanations, code changes, questions answered. Never skip it.

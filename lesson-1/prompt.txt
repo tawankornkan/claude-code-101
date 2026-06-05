@@ -1,2 +1,2 @@
-อ่าน @meeting-notes-raw.md แล้วสรุป Action Items ทั้งหมดออกมา
+อ่าน @lesson-1/meeting-notes-raw.md   แล้วสร้างไฟล์สรุป Action Items ทั้งหมดออกมา
 โดยแบ่งตามเจ้าของงานแต่ละคน และระบุ deadline ถ้ามีในบันทึก

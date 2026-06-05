@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SquadFit Beta Survey Report</title>
+<style>
+@font-face {
+  font-family: 'Manrope';
+  src: url('../docs/fonts/Manrope-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-0: #000000;
+  --bg-1: #121212;
+  --bg-2: #181818;
+  --bg-3: #282828;
+  --bg-4: #3E3E3E;
+  --fg-1: #FFFFFF;
+  --fg-2: #B3B3B3;
+  --fg-3: #6A6A6A;
+  --fg-on-green: #000000;
+  --green-1: #1ED760;
+  --green-tint-08: rgba(30,215,96,0.08);
+  --green-tint-16: rgba(30,215,96,0.16);
+  --error: #F15E6C;
+  --warning: #FFC72C;
+  --info: #4DA3FF;
+  --hairline: #282828;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 860px; margin: 0 auto; padding: 56px 40px 96px; }
+
+/* Header */
+.report-header { margin-bottom: 64px; padding-bottom: 40px; border-bottom: 1px solid var(--hairline); }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-1); margin-bottom: 10px; }
+.report-title { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; }
+.report-subtitle { font-size: 15px; color: var(--fg-2); max-width: 520px; line-height: 1.5; }
+.report-meta { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
+.meta-chip { background: var(--bg-3); border-radius: 999px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--fg-2); }
+
+/* Sections */
+.section { margin-bottom: 64px; }
+.section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+.section-desc { font-size: 13px; color: var(--fg-2); line-height: 1.6; margin-bottom: 28px; }
+.divider { height: 1px; background: var(--hairline); margin-bottom: 28px; }
+
+/* Headline metrics */
+.metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.metric-card {
+  background: var(--bg-2);
+  border-radius: 8px;
+  padding: 24px 20px;
+}
+.metric-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-2); margin-bottom: 10px; }
+.metric-value { font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--green-1); }
+.metric-sub { font-size: 12px; color: var(--fg-3); margin-top: 6px; }
+.metric-bar-wrap { margin-top: 14px; background: var(--bg-3); border-radius: 4px; height: 6px; overflow: hidden; }
+.metric-bar { height: 100%; background: var(--green-1); border-radius: 4px; transition: width 0.3s; }
+
+/* NPS breakdown */
+.nps-breakdown { display: flex; gap: 8px; margin-top: 14px; }
+.nps-seg { display: flex; flex-direction: column; gap: 3px; }
+.nps-seg-bar { height: 6px; border-radius: 4px; }
+.nps-seg-lbl { font-size: 10px; color: var(--fg-3); font-weight: 600; }
+
+/* Feature requests */
+.feature-list { display: flex; flex-direction: column; gap: 10px; }
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 44px 180px;
+  gap: 16px;
+  align-items: center;
+  background: var(--bg-2);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+.feature-row.top { background: var(--green-tint-08); border: 1px solid rgba(30,215,96,0.15); }
+.feature-name { font-weight: 600; font-size: 14px; }
+.feature-name .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--green-tint-16); color: var(--green-1); border-radius: 4px; padding: 2px 7px; margin-left: 8px; }
+.feature-count { font-size: 20px; font-weight: 800; color: var(--green-1); font-variant-numeric: tabular-nums; text-align: right; }
+.feature-bar-wrap { background: var(--bg-3); border-radius: 4px; height: 6px; overflow: hidden; }
+.feature-bar { height: 100%; background: var(--green-1); border-radius: 4px; opacity: 0.6; }
+.feature-row.top .feature-bar { opacity: 1; }
+
+/* Segment tables */
+.segment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.segment-card { background: var(--bg-2); border-radius: 8px; overflow: hidden; }
+.segment-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--hairline); }
+.segment-header h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+.segment-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--hairline);
+}
+.segment-row:last-child { border-bottom: 0; }
+.segment-row.highlight { background: var(--green-tint-08); }
+.seg-name { font-size: 13px; font-weight: 600; }
+.seg-pct { font-size: 12px; font-weight: 700; color: var(--green-1); font-variant-numeric: tabular-nums; min-width: 38px; text-align: right; }
+.seg-price { font-size: 12px; color: var(--fg-2); font-variant-numeric: tabular-nums; font-family: var(--font-mono); min-width: 60px; text-align: right; }
+
+/* Recommendations */
+.rec-list { display: flex; flex-direction: column; gap: 14px; }
+.rec-card {
+  background: var(--bg-2);
+  border-radius: 8px;
+  padding: 22px 22px 22px 18px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.rec-num {
+  width: 44px; height: 44px;
+  background: var(--green-tint-16);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--green-1);
+  flex: 0 0 44px;
+}
+.rec-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.rec-body { font-size: 13px; color: var(--fg-2); line-height: 1.6; }
+.rec-tag { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; }
+.rec-tag.high { background: rgba(241,94,108,0.15); color: var(--error); }
+.rec-tag.med { background: rgba(255,199,44,0.15); color: var(--warning); }
+.rec-tag.low { background: var(--green-tint-16); color: var(--green-1); }
+
+/* Footer */
+.report-footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--hairline); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-brand { font-size: 13px; font-weight: 700; color: var(--green-1); }
+.footer-note { font-size: 12px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="report-header">
+    <div class="eyebrow">SquadFit · Beta Survey</div>
+    <h1 class="report-title">Product Insights Report</h1>
+    <p class="report-subtitle">สรุปผล beta survey จากผู้ใช้งานกลุ่มแรก 50 คน — เพื่อนำไปใช้ตัดสินใจ roadmap และ pricing strategy</p>
+    <div class="report-meta">
+      <span class="meta-chip">n = 50 คน</span>
+      <span class="meta-chip">Trainee 85% · Coach 15%</span>
+      <span class="meta-chip">Bangkok เป็นหลัก</span>
+      <span class="meta-chip">Active 2–6 สัปดาห์</span>
+    </div>
+  </header>
+
+  <!-- 1. Headline Metrics -->
+  <section class="section">
+    <div class="eyebrow">01 · Headline Metrics</div>
+    <h2 class="section-title">ตัวเลขหลัก</h2>
+    <p class="section-desc">ภาพรวม satisfaction, loyalty, และ willingness to pay จากผู้ใช้งานทั้งหมด</p>
+    <div class="divider"></div>
+    <div class="metrics-grid">
+
+      <div class="metric-card">
+        <div class="metric-label">Avg Satisfaction</div>
+        <div class="metric-value">4.16</div>
+        <div class="metric-sub">จาก 5 คะแนน</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:83%"></div></div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">NPS Score</div>
+        <div class="metric-value">+16</div>
+        <div class="metric-sub">Promoters 34% · Detractors 18%</div>
+        <div class="nps-breakdown">
+          <div class="nps-seg" style="flex:3.4">
+            <div class="nps-seg-bar" style="background:#1ED760; width:100%"></div>
+            <div class="nps-seg-lbl">17 promoters</div>
+          </div>
+          <div class="nps-seg" style="flex:4.8">
+            <div class="nps-seg-bar" style="background:#3E3E3E; width:100%"></div>
+            <div class="nps-seg-lbl">24 passives</div>
+          </div>
+          <div class="nps-seg" style="flex:1.8">
+            <div class="nps-seg-bar" style="background:#F15E6C; width:100%"></div>
+            <div class="nps-seg-lbl">9 detractors</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Willing to Pay</div>
+        <div class="metric-value">84%</div>
+        <div class="metric-sub">42 จาก 50 คน ยินดีจ่าย premium</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:84%"></div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. Feature Requests -->
+  <section class="section">
+    <div class="eyebrow">02 · Feature Requests</div>
+    <h2 class="section-title">Features ที่ผู้ใช้ต้องการมากที่สุด</h2>
+    <p class="section-desc">รวบรวมจาก top_feature_request ของผู้ตอบแบบสอบถามทั้งหมด</p>
+    <div class="divider"></div>
+    <div class="feature-list">
+
+      <div class="feature-row top">
+        <div class="feature-name">Streak Counter <span class="tag">#1</span></div>
+        <div class="feature-count">8</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:100%"></div></div>
+      </div>
+
+      <div class="feature-row top">
+        <div class="feature-name">Squad Chat <span class="tag">#2</span></div>
+        <div class="feature-count">7</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:87%"></div></div>
+      </div>
+
+      <div class="feature-row top">
+        <div class="feature-name">Push Notifications <span class="tag">#3</span></div>
+        <div class="feature-count">6</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:75%"></div></div>
+      </div>
+
+      <div class="feature-row top">
+        <div class="feature-name">Rest Day Toggle <span class="tag">#3</span></div>
+        <div class="feature-count">6</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:75%"></div></div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-name">Weekly Summary</div>
+        <div class="feature-count">5</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:62%"></div></div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-name">Workout History</div>
+        <div class="feature-count">5</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:62%"></div></div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-name">Personal Goals</div>
+        <div class="feature-count">4</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:50%"></div></div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-name">Custom Exercises</div>
+        <div class="feature-count">4</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:50%"></div></div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-name">Squad Analytics</div>
+        <div class="feature-count">3</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:37%"></div></div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-name">Strength Log Self</div>
+        <div class="feature-count">2</div>
+        <div class="feature-bar-wrap"><div class="feature-bar" style="width:25%"></div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Willingness to Pay by Segment -->
+  <section class="section">
+    <div class="eyebrow">03 · Willingness to Pay</div>
+    <h2 class="section-title">ความยินดีจ่าย แยกตาม segment</h2>
+    <p class="section-desc">เปรียบเทียบ % ที่ยินดีจ่าย และราคาเฉลี่ย (เฉพาะคนที่ตอบ Yes) ตามอายุและเมือง</p>
+    <div class="divider"></div>
+    <div class="segment-grid">
+
+      <div class="segment-card">
+        <div class="segment-header"><h4>แยกตามช่วงอายุ</h4></div>
+        <div class="segment-row highlight">
+          <div class="seg-name">21–24 ปี (11 คน)</div>
+          <div class="seg-pct">91%</div>
+          <div class="seg-price">฿81 avg</div>
+        </div>
+        <div class="segment-row">
+          <div class="seg-name">25–29 ปี (20 คน)</div>
+          <div class="seg-pct">75%</div>
+          <div class="seg-price">฿113 avg</div>
+        </div>
+        <div class="segment-row">
+          <div class="seg-name">30+ ปี (19 คน)</div>
+          <div class="seg-pct">89%</div>
+          <div class="seg-price">฿216 avg</div>
+        </div>
+      </div>
+
+      <div class="segment-card">
+        <div class="segment-header"><h4>แยกตามเมือง</h4></div>
+        <div class="segment-row highlight">
+          <div class="seg-name">Bangkok (40 คน)</div>
+          <div class="seg-pct">85%</div>
+          <div class="seg-price">฿148 avg</div>
+        </div>
+        <div class="segment-row">
+          <div class="seg-name">Chiang Mai (3 คน)</div>
+          <div class="seg-pct">100%</div>
+          <div class="seg-price">฿199 avg</div>
+        </div>
+        <div class="segment-row">
+          <div class="seg-name">Khon Kaen (2 คน)</div>
+          <div class="seg-pct">100%</div>
+          <div class="seg-price">฿79 avg</div>
+        </div>
+        <div class="segment-row">
+          <div class="seg-name">Nonthaburi (2 คน)</div>
+          <div class="seg-pct">100%</div>
+          <div class="seg-price">฿99 avg</div>
+        </div>
+        <div class="segment-row">
+          <div class="seg-name">อื่นๆ · Phuket, Chiang Rai, Pattaya (3 คน)</div>
+          <div class="seg-pct">33%</div>
+          <div class="seg-price">฿99 avg</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Recommendations -->
+  <section class="section">
+    <div class="eyebrow">04 · Recommendations</div>
+    <h2 class="section-title">ข้อเสนอแนะสำหรับทีม Product</h2>
+    <p class="section-desc">สรุป 3 ข้อจากข้อมูล survey ที่ควรนำไป action ใน roadmap ถัดไป</div>
+    <div class="divider"></div>
+    <div class="rec-list">
+
+      <div class="rec-card">
+        <div class="rec-num">1</div>
+        <div>
+          <div class="rec-title">เร่ง build Streak Counter + Push Notifications ก่อน</div>
+          <div class="rec-body">Streak Counter ถูกขอสูงสุด (8 คน) และ Squad Chat ตามมาติดๆ (7 คน) — ทั้งคู่ตรงกับกลุ่ม trainee อายุน้อยที่ engagement สูงสุด (avg 25+ sessions) เป็น low-effort, high-retention play ที่ชัดเจนที่สุด ควร ship ใน sprint ถัดไป</div>
+          <span class="rec-tag high">Priority: High</span>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div class="rec-num">2</div>
+        <div>
+          <div class="rec-title">ตั้งราคา ฿99–฿149/เดือน สำหรับ coach tier</div>
+          <div class="rec-body">กลุ่มอายุ 30+ ยินดีจ่ายเฉลี่ย ฿232 และ coach ทุกคนตอบ Yes — ชี้ให้เห็นว่ามี headroom สำหรับ premium coach plan ที่ราคาสูงกว่า trainee ควรทดสอบ ฿249–฿399 กับ coach โดยเฉพาะ และ ฿79–฿99 สำหรับ student segment ที่อายุน้อยกว่า</div>
+          <span class="rec-tag med">Priority: Medium</span>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div class="rec-num">3</div>
+        <div>
+          <div class="rec-title">ลดการ churn ใน detractor group (NPS 5–6) ด้วย onboarding ที่ดีขึ้น</div>
+          <div class="rec-body">9 คน (18%) ให้ NPS 5–6 และ satisfaction 3/5 — กลุ่มนี้ขอ Rest Day Toggle บ่อยที่สุด (6 คน รวมทุก segment) ชี้ว่าพวกเขารู้สึกว่า product บังคับ routine มากเกินไป การเพิ่ม flexibility (rest day, self-logging) จะช่วยลด detractor rate และเพิ่ม NPS ได้โดยไม่ต้องเปลี่ยน core experience</div>
+          <span class="rec-tag low">Priority: Medium-Low</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="report-footer">
+    <div class="footer-brand">SquadFit</div>
+    <div class="footer-note">Beta Survey Report · n=50 · Generated from beta-survey-results.csv</div>
+  </footer>
+
+</div>
+</body>
+</html>

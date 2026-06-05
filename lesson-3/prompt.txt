@@ -1,10 +1,12 @@
-ใช้ Agent ช่วยสร้างไฟล์ research คู่แข่งของ dating app ที่ได้รับความนิยมในไทยให้หน่อย
+## Prompt 1 — สรุป User Research
 
-สำหรับแต่ละแอป อยากรู้:
-1. Feature หลัก
-2. กลุ่มเป้าหมาย
-3. Pricing model
-4. AI หรือ safety feature ที่มี (ถ้ามี)
-5. จุดอ่อนที่ผู้ใช้บ่นบ่อย
+ใช้ Agent อ่าน folder user-interviews แล้วสร้างไฟล์ชื่อ interview-summary.md เพื่อสรุปดังนี้:
+1. Pain points ที่พูดถึงบ่อยที่สุด 3 อันดับแรก
+2. Feature ที่ผู้ใช้อยากได้มากที่สุด
+3. ความแตกต่างระหว่าง Coach และ Trainee ในแง่ความต้องการและ pain point
 
-สรุปท้ายว่า RedFlagFinder ควรจะ position ตัวเองยังไงในตลาดนี้
+---
+
+## Prompt 2 — เขียนตาม Communication Style
+
+อ่าน @interview-summary.md แล้วเขียนสรุปด้วย @style-slack.md
